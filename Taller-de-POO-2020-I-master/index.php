@@ -66,3 +66,8 @@ echo($human->getHands() . '<br>');
 //$tmpSkills=$human->getSkills();
 
 //\entities\Managers\DamageManager::attack($human, $tmpSkills[2], $orc);
+
+\entities\Managers\DamageManager::useSkill($human, $golpeArma, $elf);
+\entities\Managers\DamageManager::useSkill($human, $golpeArma, $elf);
+\entities\Managers\DamageManager::useSkill($human, $golpeArma, $elf);
+\entities\Managers\DamageManager::useSkill($human, $golpeArma, $elf);
