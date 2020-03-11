@@ -1,143 +1,38 @@
 <?php
 
+namespace entities\Skills;
+
 use entities\Skills\Skill;
 
-class SkillStats extends Skill{
-    private $multhealtPoints;
-    private $multstr;
-    private $multintl;
-    private $multagi;
-    private $multpDef;
-    private $multmDef;
+class SkillStats extends Skill
+{
+    private $mult=(["hp"=>0,"str"=>0,"intl"=>0,"agi"=>0,"pDef"=>0,"mDef"=>0]);
 
-
-    public function __CONSTRUCT(){
-        
-    }
-
-
-    /**
-     * Get the value of multhealtPoints
-     */ 
-    public function getMulthealtPoints()
+    public function __CONSTRUCT($name, $description, $type, $subtype, $effect, float $hp,float $str, float $intl, float $agi, float $pDef, float $mDef)
     {
-        return $this->multhealtPoints;
+        parent::__CONSTRUCT($name, $description, $type, $subtype, $effect);
+        $this->mult=["hp"=>$hp,"str"=>$str,"intl"=>$intl,"agi"=>$agi,"pDef"=>$pDef,"mDef"=>$mDef];
+    }
+
+
+
+    /**
+     * Get the value of mult
+     */
+    public function getMult()
+    {
+        return $this->mult;
     }
 
     /**
-     * Set the value of multhealtPoints
+     * Set the value of mult
      *
      * @return  self
-     */ 
-    public function setMulthealtPoints($multhealtPoints)
+     */
+    public function setMult($mult)
     {
-        $this->multhealtPoints = $multhealtPoints;
+        $this->mult = $mult;
 
         return $this;
     }
-
-    /**
-     * Get the value of multstr
-     */ 
-    public function getMultstr()
-    {
-        return $this->multstr;
-    }
-
-    /**
-     * Set the value of multstr
-     *
-     * @return  self
-     */ 
-    public function setMultstr($multstr)
-    {
-        $this->multstr = $multstr;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of multintl
-     */ 
-    public function getMultintl()
-    {
-        return $this->multintl;
-    }
-
-    /**
-     * Set the value of multintl
-     *
-     * @return  self
-     */ 
-    public function setMultintl($multintl)
-    {
-        $this->multintl = $multintl;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of multagi
-     */ 
-    public function getMultagi()
-    {
-        return $this->multagi;
-    }
-
-    /**
-     * Set the value of multagi
-     *
-     * @return  self
-     */ 
-    public function setMultagi($multagi)
-    {
-        $this->multagi = $multagi;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of multpDef
-     */ 
-    public function getMultpDef()
-    {
-        return $this->multpDef;
-    }
-
-    /**
-     * Set the value of multpDef
-     *
-     * @return  self
-     */ 
-    public function setMultpDef($multpDef)
-    {
-        $this->multpDef = $multpDef;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of multmDef
-     */ 
-    public function getMultmDef()
-    {
-        return $this->multmDef;
-    }
-
-    /**
-     * Set the value of multmDef
-     *
-     * @return  self
-     */ 
-    public function setMultmDef($multmDef)
-    {
-        $this->multmDef = $multmDef;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of multarmorPoints
-     */ 
-
 }

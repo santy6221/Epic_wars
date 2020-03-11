@@ -4,58 +4,87 @@ namespace entities\Managers;
 
 use entities\Character;
 use entities\Skills\Skill;
+use entities\Skills\SkillAtk;
+use entities\Skills\SkillStats;
 
 class DamageManager
 {
-        public static function die(Character $character)
-        {
-                $character->setState(0);
-                echo ($character->getName() . " ha muerto." . '<br>');
+    public static function die(Character $character)
+    {
+        $character->setState(0);
+        echo($character->getName() . " ha muerto." . '<br>');
+    }
+
+    public static function revive(Character $character)
+    {
+        $character->setState(1);
+        echo($character->getName() . " ha revivido." . '<br>');
+    }
+
+    public static function useSkill(Character $character, Skill $skill, Character $objective)
+    {
+        if ($skill->getEffect() == "buff") {
+            self::buffs($character, $skill);
+        } else {
+            self::attack($character, $skill, $objective);
+        }
+    }
+    // Recibe el skill a utilizar y realiza el calculo de daño a causar teniendo encuenta
+    // que los atáques de tipo fisicos se benefician de la fuerza del personaje, así que
+    // por cada 10 puntos de fuerza, el daño a realizar se aumenta en un 2%, así mismo por
+    // cada 10 puntos de agilidad del personaje la probabilidad de un impacto crítico aumenta
+    // en un 1%, si el impacto es crítico entonces el daño causado se multiplica por 150%; para
+    // los ataques de tipo mágico funciona de la misma manera pero en este caso el intelecto es
+    // quien incrementa el daño un 2% por cada 10 puntos.
+    private static function attack(Character $attacker, SkillAtk $skill, Character $attacked)
+    {
+        LevelManager::gainExp($attacker);
+        $atk=0;
+        $critico=($attacker->getAgi()/10)*0.01;
+
+        if ($skill->getType() == "Fisico") {
+            $bonusTipo=($attacker->getStr()/10)*0.02;
+        } else {
+            $bonusTipo=($attacker->getIntl()/10)*0.02;
         }
 
-        public static function revive(Character $character)
-        {
-                $character->setState(1);
-                echo ($character->getName() . " ha revivido." . '<br>');
+        if (rand(0, 100) < $critico) {
+            $atk=$atk*1.5;
         }
+        $atk=$atk*(1+$bonusTipo);
+        self::takeDamage($attacked, $atk, $skill->getType());
+    }
+    private static function buffs(Character $caster, SkillStats $skill)
+    {
+        //"hp"=>0,"str"=>0,"intl"=>0,"agi"=>0,"pDef"=>0,"mDef"=>0
+        $v_buffs=$skill->getMult();
+        $caster->setHealtPoints($caster->getHealtPoints()*$v_buffs["hp"]);
+        $caster->setStr($caster->getStr()*$v_buffs["str"]);
+        $caster->setIntl($caster->getIntl()*$v_buffs["intl"]);
+        $caster->setAgi($caster->getAgi()*$v_buffs["agi"]);
+        $caster->setPDef($caster->getPDef()*$v_buffs["pDef"]);
+        $caster->setMDef($caster->getMDef()*$v_buffs["mDef"]);
+        LevelManager::gainExp($caster);
+    }
 
-        public static function useSkill(Character $character, Skill $skill, Character $objective)
-        {
+    public static function takeDamage(Character $character, float $damage, $type)
+    {
+        //armadura
+        $finalDamage = $damage - (0.01 * ($character->getArmorPoints() / 10));
 
-                if ($skill->getEffect() == "buff") {
-                        self::buffs($character, $skill);
-                } else {
-                        self::attack($character, $skill, $objective);
-                }
+        //defensa segun tipo de ataque
+        if ($type == "Fisico") {
+            $finalDamage = $damage - (0.20 * ($character->getPDef() / 10));
+        } else {
+            $finalDamage = $damage - (0.20 * ($character->getMDef() / 10));
         }
+        $character->setHealtPoints($character->getHealtPoints() - $finalDamage);
 
-        private static function attack(Character $attacker, Skill $skill, Character $attacked)
-        {
-
-                if ($skill->getType() == "physical") {
-                } else {
-                }
+        if ($character->getHealtPoints() <= 0) {
+            DamageManager::die($character);
+            LevelManager::levelDown($character);
+        } else {
+            echo($character->getName() . " ha recibido daño y ahora sus health points son: " . $character->getHealtPoints() . '<br>');
         }
-        private static function buffs(Character $caster, Skill $skill)
-        {
-        }
-
-        public static function takeDamage(Character $character, float $damage, $type)
-        {
-                //armadura
-                $finalDamage = $damage - (0.01 * ($character->getArmorPoints() / 10));
-
-                //defensa segun tipo de ataque
-                if ($type == "Fisico")
-                        $finalDamage = $damage - (0.20 * ($character->getPDef() / 10));
-                else
-                        $finalDamage = $damage - (0.20 * ($character->getMDef() / 10));
-
-                $character->setHealtPoints($character->getHealtPoints() - $finalDamage);
-
-                if ($character->getHealtPoints() <= 0)
-                        DamageManager::die($character);
-                else
-                        echo ($character->getName() . " ha recibido daño y ahora sus health points son: " . $character->getHealtPoints() . '<br>');
-        }
+    }
 }
