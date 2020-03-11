@@ -22,8 +22,11 @@ class LevelManager
     public static function levelDown(Character $character)
     {
         if ($character->getLevel() >= 2) {
+
             $character->setLevel($character->getLevel() - 1);
-            echo $character->getName() . " ha perdido un nivel";
+            echo $character->getName() . " ha perdido un nivel.</br>";
+        } else {
+            echo $character->getName() . " es demasiado debil para bajar de nivel</br>";
         }
     }
 
