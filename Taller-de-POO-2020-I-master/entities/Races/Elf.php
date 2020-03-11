@@ -2,8 +2,10 @@
 
 namespace entities\Races;
 
-class Human extends \entities\Races\Race {
-    public function getStats(): Array {
+class Elf extends \entities\Races\Race
+{
+    public function getStats(): array
+    {
         return [BASE_HP, BASE_STR, BASE_INTL * 1.10, BASE_AGI * 1.05, BASE_PDEF*0.95, BASE_MDEF];
     }
 }
