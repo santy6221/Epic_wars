@@ -23,7 +23,7 @@ class DamageManager
 
     public static function useSkill(Character $character, Skill $skill, Character $objective)
     {
-        if ($skill->getEffect() == "buff") {
+        if ($skill->getEffect() == "Stats") {
             self::buffs($character, $skill);
         } else {
             self::attack($character, $skill, $objective);
@@ -41,11 +41,24 @@ class DamageManager
         LevelManager::gainExp($attacker);
         $atk=0;
         $critico=($attacker->getAgi()/10)*0.01;
+        $v_armas=$attacker->getWeapons();
+        $v_mult=$skill->getMult();
+        $v_stats_attacker=(["str"=>$attacker->getStr(),"intl"=>$attacker->getIntl(),"agi"=>$attacker->getAgi()]);
+        //private $mult=(["str"=>0,"intl"=>0,"agi"=>0]);
 
         if ($skill->getType() == "Fisico") {
             $bonusTipo=($attacker->getStr()/10)*0.02;
+            $atk+=$v_armas[0]->getPAtk()*$skill->getWeaponIAtk();
+            $atk+=$v_armas[1]->getPAtk()*$skill->getWeaponDAtk();
         } else {
+            //El personaje invoca el poder arcano y el elemento
+            //del fuego para quemar a su enemigo inflingiendo 40% de su intelecto como daño mágico.
             $bonusTipo=($attacker->getIntl()/10)*0.02;
+            $atk+=$v_armas[0]->getMAtk()*$skill->getWeaponIAtk();
+            $atk+=$v_armas[1]->getMAtk()*$skill->getWeaponDAtk();
+            $atk=$atk+$v_mult["str"]*$v_stats_attacker["str"];
+            $atk=$atk+$v_mult["intl"]*$v_stats_attacker["intl"];
+            $atk=$atk+$v_mult["agi"]*$v_stats_attacker["agi"];
         }
 
         if (rand(0, 100) < $critico) {
