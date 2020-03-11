@@ -26,12 +26,16 @@ class DamageManager
 
         public static function useSkill(Character $character, Skill $skill, Character $objective)
         {
-                if ($skill->getEffect() == "Stats") {
-                        self::buffs($character, $skill);
-                        echo ($character->getName() . " ha elegido un bufo." . '<br>');
+                if ($character->getState() == 1) {
+                        if ($skill->getEffect() == "Stats") {
+                                self::buffs($character, $skill);
+                                echo ($character->getName() . " ha elegido un bufo." . '<br>');
+                        } else {
+                                self::attack($character, $skill, $objective);
+                                echo ($character->getName() . " ha elegido un ataque." . '<br>');
+                        }
                 } else {
-                        self::attack($character, $skill, $objective);
-                        echo ($character->getName() . " ha elegido un ataque." . '<br>');
+                        echo $character->getName() . " está muerto, no pude atacar.</br>";
                 }
         }
         // Recibe el skill a utilizar y realiza el calculo de daño a causar teniendo encuenta
@@ -46,7 +50,7 @@ class DamageManager
                 echo ($attacker->getName() . " ha atacado a " . $attacked->getName() . " con " . $skill->getName() . '<br>');
                 LevelManager::gainExp($attacker);
                 $atk = 0;
-                $critico = ($attacker->getAgi() / 10) * 0.01;
+                $critico = 10 + (($attacker->getAgi() / 10) * 0.01);
                 $v_armas = $attacker->getWeapons();
                 $v_mult = $skill->getMult();
                 $v_stats_attacker = (["str" => $attacker->getStr(), "intl" => $attacker->getIntl(), "agi" => $attacker->getAgi()]);
@@ -118,4 +122,3 @@ class DamageManager
                 }
         }
 }
-
