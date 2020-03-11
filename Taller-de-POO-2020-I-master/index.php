@@ -20,12 +20,12 @@ $elf = \entities\Managers\CharacterManager::create("Didi",1,1,\entities\Races\El
 
 
 //$human->setPlayableClass("Mago");
-$golpeArma = new SkillAtk("Golpe con arma", "Se dan putazos", "Fisico", "Basico", "Atk", 1.00, 0.70,1,1,1);
-$golpeTrampero = new SkillAtk("Golpe trampero", "El personaje distrae a su oponente", "Fisico", "Picaro", "Atk", 1.50, 1.50,1,1,1);
-$tajoMortal=new SkillAtk("Tajo mortal", "El personaje salta con intenciones despiadas","Fisico","Guerrero","Atk",2.00,2.00,1,1,1);
+$golpeArma = new SkillAtk("Golpe con arma", "Se dan putazos", "Fisico", "Basico", "Atk", 1.00, 0.70,0,0,0);
+$golpeTrampero = new SkillAtk("Golpe trampero", "El personaje distrae a su oponente", "Fisico", "Picaro", "Atk", 1.50, 1.50,0,0,0);
+$tajoMortal=new SkillAtk("Tajo mortal", "El personaje salta con intenciones despiadas","Fisico","Guerrero","Atk",2.00,2.00,0,0,0);
 $meditacion = new SkillStats("Meditaación","El personaje medita","Magico","Basico","Stats",1.0,1.0,1.05,1.05,1.00,1.00);
                                                                             //"hp"=>0,"str"=>0,"intl"=>0,"agi"=>0,"pDef"=>0,"mDef"=>0
-$calcinacion = new SkillAtk("Calcinación","El personaje invoca el poder arcano y el elemento del fuego","Magico","Mago","Atk",1,1,1,0,40,1);
+$calcinacion = new SkillAtk("Calcinación","El personaje invoca el poder arcano y el elemento del fuego","Magico","Mago","Atk",1,1,0,0.40,0);
 $tacticasCombate = new SkillStats("Tacticas de combate","El personaje repasa el campo de batalla","Fisico","Avanzado","Stats",1,1.05,1,1.05,1,1);
 
 
