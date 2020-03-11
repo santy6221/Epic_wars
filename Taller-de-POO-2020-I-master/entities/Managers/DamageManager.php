@@ -21,12 +21,16 @@ class DamageManager
         echo($character->getName() . " ha revivido." . '<br>');
     }
 
+
+    
     public static function useSkill(Character $character, Skill $skill, Character $objective)
     {
         if ($skill->getEffect() == "Stats") {
             self::buffs($character, $skill);
+            echo($character->getName." ha elegido un bufo.".'<br>');
         } else {
             self::attack($character, $skill, $objective);
+            echo($character->getName." ha elegido un ataque.".'<br>');
         }
     }
     // Recibe el skill a utilizar y realiza el calculo de daño a causar teniendo encuenta
@@ -38,6 +42,7 @@ class DamageManager
     // quien incrementa el daño un 2% por cada 10 puntos.
     private static function attack(Character $attacker, SkillAtk $skill, Character $attacked)
     {
+        echo($attacker->getName." ha atacado a ".$attacked->getName()." con ".$skill->getName().'<br>');
         LevelManager::gainExp($attacker);
         $atk=0;
         $critico=($attacker->getAgi()/10)*0.01;
@@ -63,10 +68,14 @@ class DamageManager
 
         if (rand(0, 100) < $critico) {
             $atk=$atk*1.5;
+            echo("Es una ataque critico.".'<br>');
         }
         $atk=$atk*(1+$bonusTipo);
         self::takeDamage($attacked, $atk, $skill->getType());
     }
+
+
+
     private static function buffs(Character $caster, SkillStats $skill)
     {
         //"hp"=>0,"str"=>0,"intl"=>0,"agi"=>0,"pDef"=>0,"mDef"=>0
@@ -78,9 +87,17 @@ class DamageManager
         $caster->setPDef($caster->getPDef()*$v_buffs["pDef"]);
         $caster->setMDef($caster->getMDef()*$v_buffs["mDef"]);
         LevelManager::gainExp($caster);
+
+        echo "Las estadísticas de ".$caster->getName()." ahora son:</br>";
+        echo "HP Max: ".$caster->getMaxHealtPoints()."</br>";
+        echo "Str: ".$caster->getStr()."</br>";
+        echo "Intl: ".$caster->getIntl()."</br>";
+        echo "Agi: ".$caster->getAgi()."</br>";
+        echo "PDef: ".$caster->getPDef()."</br>";
+        echo "MDef: ".$caster->getMDef()."</br></br>";
     }
 
-    public static function takeDamage(Character $character, float $damage, $type)
+    public static function takeDamage(Character $character, float $damage, string  $type)
     {
         //armadura
         $finalDamage = $damage - (0.01 * ($character->getArmorPoints() / 10));
@@ -97,7 +114,7 @@ class DamageManager
             DamageManager::die($character);
             LevelManager::levelDown($character);
         } else {
-            echo($character->getName() . " ha recibido daño y ahora sus health points son: " . $character->getHealtPoints() . '<br>');
+            echo($character->getName() . " ha recibido daño ".$type." y ahora sus health points son: " . $character->getHealtPoints() . '<br>');
         }
     }
 }
