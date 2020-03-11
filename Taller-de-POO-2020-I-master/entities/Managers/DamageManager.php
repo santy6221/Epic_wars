@@ -9,6 +9,7 @@ use entities\Skills\SkillStats;
 
 class DamageManager
 {
+        //cambia el estado del personaje y disminuye su nivel
         public static function die(Character $character)
         {
                 $character->setState(0);
@@ -16,6 +17,7 @@ class DamageManager
                 LevelManager::levelDown($character);
         }
 
+        //cambia el estado del personaje
         public static function revive(Character $character)
         {
                 $character->setState(1);
@@ -23,7 +25,7 @@ class DamageManager
         }
 
 
-
+        //define el tipo de skill a usar, si causa dalo o si mejora habilidades propias
         public static function useSkill(Character $character, Skill $skill, Character $objective)
         {
                 if ($character->getState() == 1) {
@@ -45,12 +47,14 @@ class DamageManager
         // en un 1%, si el impacto es crítico entonces el daño causado se multiplica por 150%; para
         // los ataques de tipo mágico funciona de la misma manera pero en este caso el intelecto es
         // quien incrementa el daño un 2% por cada 10 puntos.
+
+        //si se define que la habilidad causa daño se envia aqui, donde se define si es de daño fisico o magico y se hacen los respectivos calculos
         private static function attack(Character $attacker, SkillAtk $skill, Character $attacked)
         {
                 echo ($attacker->getName() . " ha atacado a " . $attacked->getName() . " con " . $skill->getName() . '<br>');
                 LevelManager::gainExp($attacker);
                 $atk = 0;
-                $critico = 10 + (($attacker->getAgi() / 10) * 0.1);
+                $critico = 10 + (($attacker->getAgi() / 10) * 0.01);
                 $v_armas = $attacker->getWeapons();
                 $v_mult = $skill->getMult();
                 $v_stats_attacker = (["str" => $attacker->getStr(), "intl" => $attacker->getIntl(), "agi" => $attacker->getAgi()]);
@@ -66,10 +70,11 @@ class DamageManager
                         $bonusTipo = ($attacker->getIntl() / 10) * 0.02;
                         $atk += $v_armas[0]->getMAtk() * $skill->getWeaponIAtk();
                         $atk += $v_armas[1]->getMAtk() * $skill->getWeaponDAtk();
+                        $atk = $atk + $v_mult["str"] * $v_stats_attacker["str"];
+                        $atk = $atk + $v_mult["intl"] * $v_stats_attacker["intl"];
+                        $atk = $atk + $v_mult["agi"] * $v_stats_attacker["agi"];
                 }
-                $atk = $atk + $v_mult["str"] * $v_stats_attacker["str"];
-                $atk = $atk + $v_mult["intl"] * $v_stats_attacker["intl"];
-                $atk = $atk + $v_mult["agi"] * $v_stats_attacker["agi"];
+
                 if (rand(0, 100) < $critico) {
                         $atk = $atk * 1.5;
                         echo ("Es una ataque critico." . '<br>');
@@ -79,7 +84,7 @@ class DamageManager
         }
 
 
-
+        //si la skill es definida como un buffo es enviada aqui, donde se modifican los atributos del personaje de acuerdo a la skill
         private static function buffs(Character $caster, SkillStats $skill)
         {
                 //"hp"=>0,"str"=>0,"intl"=>0,"agi"=>0,"pDef"=>0,"mDef"=>0
@@ -101,6 +106,7 @@ class DamageManager
                 echo "MDef: " . $caster->getMDef() . "</br></br>";
         }
 
+        //cuando un personaje ataca se llama esta funcion para que el objetivo reciba daño dependiendo de sus resistencias individuales
         public static function takeDamage(Character $character, float $damage, string  $type)
         {
                 //armadura
