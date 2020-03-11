@@ -114,7 +114,7 @@ class DamageManager
             DamageManager::die($character);
             LevelManager::levelDown($character);
         } else {
-            echo($character->getName() . " ha recibido daño ".$type." y ahora sus health points son: " . $character->getHealtPoints() . '<br>');
+            echo($character->getName() . " ha recibido daño ".$type." y ahora sus health points son: " . $character->getHealtPoints() . '</br></br>');
         }
     }
 }
