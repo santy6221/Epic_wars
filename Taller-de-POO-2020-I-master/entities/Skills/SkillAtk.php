@@ -5,6 +5,7 @@ use entities\Skills\Skill;
 class SkillAtk extends Skill{
     private $WeaponDAtk;
     private $WeaponIAtk;
+    private $mult=(["str"=>0,"intl"=>0,"agi"=>0]);
 
     // public function useSkill(){
     //     if($this->effect=="atk"){
@@ -12,10 +13,11 @@ class SkillAtk extends Skill{
     //     }
     // }
 
-    public function __CONSTRUCT($name, $description, $type, $subtype, $effect, $WeaponDAtk, $WeaponIAtk){
+    public function __CONSTRUCT($name, $description, $type, $subtype, $effect, $WeaponDAtk, $WeaponIAtk, float $str, float $intl, float $agi){
         parent::__CONSTRUCT($name, $description, $type, $subtype, $effect);
         $this->WeaponDAtk=$WeaponDAtk;
         $this->WeaponIAtk=$WeaponIAtk;
+        $this->mult=["str"=>$str,"intl"=>$intl,"agi"=>$agi];
     }
 
     /**
@@ -54,6 +56,26 @@ class SkillAtk extends Skill{
     public function setWeaponIAtk($WeaponIAtk)
     {
         $this->WeaponIAtk = $WeaponIAtk;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of mult
+     */ 
+    public function getMult()
+    {
+        return $this->mult;
+    }
+
+    /**
+     * Set the value of mult
+     *
+     * @return  self
+     */ 
+    public function setMult($mult)
+    {
+        $this->mult = $mult;
 
         return $this;
     }
