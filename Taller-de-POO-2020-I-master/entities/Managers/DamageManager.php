@@ -31,6 +31,7 @@ class DamageManager
 
         private static function attack(Character $attacker, Skill $skill, Character $attacked)
         {
+                LevelManager::gainExp($attacker);
 
                 if ($skill->getType() == "physical") {
                 } else {
@@ -38,6 +39,7 @@ class DamageManager
         }
         private static function buffs(Character $caster, Skill $skill)
         {
+                LevelManager::gainExp($caster);
         }
 
         public static function takeDamage(Character $character, float $damage, $type)
@@ -46,16 +48,18 @@ class DamageManager
                 $finalDamage = $damage - (0.01 * ($character->getArmorPoints() / 10));
 
                 //defensa segun tipo de ataque
-                if ($type == "Fisico")
+                if ($type == "Fisico") {
                         $finalDamage = $damage - (0.20 * ($character->getPDef() / 10));
-                else
+                } else {
                         $finalDamage = $damage - (0.20 * ($character->getMDef() / 10));
-
+                }
                 $character->setHealtPoints($character->getHealtPoints() - $finalDamage);
 
-                if ($character->getHealtPoints() <= 0)
+                if ($character->getHealtPoints() <= 0) {
                         DamageManager::die($character);
-                else
+                        LevelManager::levelDown($character);
+                } else {
                         echo ($character->getName() . " ha recibido daño y ahora sus health points son: " . $character->getHealtPoints() . '<br>');
+                }
         }
 }
