@@ -2,12 +2,13 @@
 
 namespace entities;
 
-class Weapon {
-    private $name;
-    private $description;
-    private $type;
-    private $pAtk;
-    private $mAtk;
+class Weapon
+{
+    private $name; //nombre del arma
+    private $description; //descripcion
+    private $type; //1 mano o 2 manos
+    private $pAtk; //daño fisico
+    private $mAtk; //daño magico
 
     public function __construct($name, $description, $type, $pAtk, $mAtk)
     {
@@ -20,7 +21,7 @@ class Weapon {
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -30,7 +31,7 @@ class Weapon {
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -40,7 +41,7 @@ class Weapon {
 
     /**
      * Get the value of type
-     */ 
+     */
     public function getType()
     {
         return $this->type;
@@ -50,7 +51,7 @@ class Weapon {
      * Set the value of type
      *
      * @return  self
-     */ 
+     */
     public function setType($type)
     {
         $this->type = $type;
@@ -60,7 +61,7 @@ class Weapon {
 
     /**
      * Get the value of description
-     */ 
+     */
     public function getDescription()
     {
         return $this->description;
@@ -70,7 +71,7 @@ class Weapon {
      * Set the value of description
      *
      * @return  self
-     */ 
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -80,7 +81,7 @@ class Weapon {
 
     /**
      * Get the value of pAtk
-     */ 
+     */
     public function getPAtk()
     {
         return $this->pAtk;
@@ -90,7 +91,7 @@ class Weapon {
      * Set the value of pAtk
      *
      * @return  self
-     */ 
+     */
     public function setPAtk($pAtk)
     {
         $this->pAtk = $pAtk;
@@ -100,7 +101,7 @@ class Weapon {
 
     /**
      * Get the value of mAtk
-     */ 
+     */
     public function getMAtk()
     {
         return $this->mAtk;
@@ -110,7 +111,7 @@ class Weapon {
      * Set the value of mAtk
      *
      * @return  self
-     */ 
+     */
     public function setMAtk($mAtk)
     {
         $this->mAtk = $mAtk;

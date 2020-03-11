@@ -3,6 +3,7 @@
 namespace entities\Managers;
 
 use entities\Character;
+use entities\GameAnnouncer;
 
 class LevelManager
 {
@@ -14,16 +15,20 @@ class LevelManager
     {
         if ($character->getLevel() < self::$maxLevel) {
             $character->setLevel($character->getLevel() + 1);
+            GameAnnouncer::anounceLvlUp($character);
         } else {
-            echo $character->getName() . " ya es de nivel maximo.";
+            GameAnnouncer::anounceMaxLvl($character);
         }
     }
 
     public static function levelDown(Character $character)
     {
         if ($character->getLevel() >= 2) {
+
             $character->setLevel($character->getLevel() - 1);
-            echo $character->getName() . " ha perdido un nivel";
+            GameAnnouncer::anounceLvlDown($character);
+        } else {
+            GameAnnouncer::anounceMinLvl($character);
         }
     }
 
@@ -39,7 +44,7 @@ class LevelManager
     {
         $character->setXp($character->getXp() + 100);
 
-        echo $character->getName() . " ha ganado 100 puntos de experiencia";
+        GameAnnouncer::anounceGainXp($character);
 
         $lvlup = self::getExpForLevel($character);
 

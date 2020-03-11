@@ -1,11 +1,15 @@
 <?php
+
 namespace entities\Skills;
+
 use entities\Skills\Skill;
 
-class SkillAtk extends Skill{
+//una clase herencia para las sills agresivas, sus atributos incluyen el daño de armas y los multiplicadores de estadisticas de cada skill
+class SkillAtk extends Skill
+{
     private $WeaponDAtk;
     private $WeaponIAtk;
-    private $mult=(["str"=>0,"intl"=>0,"agi"=>0]);
+    private $mult = (["str" => 0, "intl" => 0, "agi" => 0]);
 
     // public function useSkill(){
     //     if($this->effect=="atk"){
@@ -13,16 +17,17 @@ class SkillAtk extends Skill{
     //     }
     // }
 
-    public function __CONSTRUCT($name, $description, $type, $subtype, $effect, $WeaponDAtk, $WeaponIAtk, float $str, float $intl, float $agi){
+    public function __CONSTRUCT($name, $description, $type, $subtype, $effect, $WeaponDAtk, $WeaponIAtk, float $str, float $intl, float $agi)
+    {
         parent::__CONSTRUCT($name, $description, $type, $subtype, $effect);
-        $this->WeaponDAtk=$WeaponDAtk;
-        $this->WeaponIAtk=$WeaponIAtk;
-        $this->mult=["str"=>$str,"intl"=>$intl,"agi"=>$agi];
+        $this->WeaponDAtk = $WeaponDAtk;
+        $this->WeaponIAtk = $WeaponIAtk;
+        $this->mult = ["str" => $str, "intl" => $intl, "agi" => $agi];
     }
 
     /**
      * Get the value of WeaponDAtk
-     */ 
+     */
     public function getWeaponDAtk()
     {
         return $this->WeaponDAtk;
@@ -32,7 +37,7 @@ class SkillAtk extends Skill{
      * Set the value of WeaponDAtk
      *
      * @return  self
-     */ 
+     */
     public function setWeaponDAtk($WeaponDAtk)
     {
         $this->WeaponDAtk = $WeaponDAtk;
@@ -42,7 +47,7 @@ class SkillAtk extends Skill{
 
     /**
      * Get the value of WeaponIAtk
-     */ 
+     */
     public function getWeaponIAtk()
     {
         return $this->WeaponIAtk;
@@ -52,7 +57,7 @@ class SkillAtk extends Skill{
      * Set the value of WeaponIAtk
      *
      * @return  self
-     */ 
+     */
     public function setWeaponIAtk($WeaponIAtk)
     {
         $this->WeaponIAtk = $WeaponIAtk;
@@ -62,7 +67,7 @@ class SkillAtk extends Skill{
 
     /**
      * Get the value of mult
-     */ 
+     */
     public function getMult()
     {
         return $this->mult;
@@ -72,7 +77,7 @@ class SkillAtk extends Skill{
      * Set the value of mult
      *
      * @return  self
-     */ 
+     */
     public function setMult($mult)
     {
         $this->mult = $mult;
@@ -80,4 +85,3 @@ class SkillAtk extends Skill{
         return $this;
     }
 }
-

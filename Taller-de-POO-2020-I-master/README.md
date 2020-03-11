@@ -5,7 +5,7 @@ Este juego planea ser el mejor MMORPG del mundo superando por mucho al **World o
 
 Como maestr@ ingenier@, am@ de la mazmorra y señor/a de las fuentes arcanas, es su deber con el reino el diseño adecuado del software que soportará esta gran aventura.
 
-### Razas
+HECHO### Razas
 
 El juego se compone inicialmente de **razas** que podrá seleccionar el jugador, cada raza tiene sus habilidades especiales incluídas como se lista a continuación:
 
@@ -31,27 +31,27 @@ Todos los humanoides cuentan con los iguientes atributos:
 
 Todos los humanoides pueden ser afectados por las siguientes acciones:
 
-* **learnSkill**: Recibe como parámetro el skill a aprender y el personaje que lo aprenderá sólo en el caso de que el skill pueda ser aprendido por su raza y clase.
+HECHO* **learnSkill**: Recibe como parámetro el skill a aprender y el personaje que lo aprenderá sólo en el caso de que el skill pueda ser aprendido por su raza y clase.
 
-* **forgetSkill**: Recibe como parámetro el skill a olvidar y el personaje que lo aprenderá, si el personaje conoce el skill, entonces podrá ser olvidado.
-* **die**: Recibe como parámetro el personaje a ser asesinado.
-* **revive**: Recibe como parámetro el personaje a ser revivido, al revivir el personaje regresa con 10% de su salud máxima a menos que se reviva con una skill de revivir, en ese caso aplican las normas del skill.
-* **levelUp**: Recibe el personaje a subir de nivel y la cantidad de niveles a subir. El nivel máximo es 100.
-* **levelDown**: Recibe el personaje a bajar de nivel y la cantidad de niveles a bajar. El nivel mínimo es 1.
-* **takeDamage**: Recibe la cantidad de daño que afectará los healtpoints del personaje teniendo en cuenta que el daño recibido se reduce en 1% por cada 10 puntos de armadura del personaje, además la defensa aplicada en el cálculo debe corresponder al tipo de ataque recibido (mágico o físico). Si el daño recibido deja los healtpoints < 0, entonces el personaje debe morir.
-* **attack**: Recibe el skill a utilizar y realiza el calculo de daño a causar teniendo encuenta que los atáques de tipo fisicos se benefician de la fuerza del personaje, así que por cada 10 puntos de fuerza, el daño a realizar se aumenta en un 2%, así mismo por cada 10 puntos de agilidad del personaje la probabilidad de un impacto crítico aumenta en un 1%, si el impacto es crítico entonces el daño causado se multiplica por 150%; para los ataques de tipo mágico funciona de la misma manera pero en este caso el intelecto es quien incrementa el daño un 2% por cada 10 puntos.
+HECHO* **forgetSkill**: Recibe como parámetro el skill a olvidar y el personaje que lo aprenderá, si el personaje conoce el skill, entonces podrá ser olvidado.
+HECHO* **die**: Recibe como parámetro el personaje a ser asesinado.
+HECHO* **revive**: Recibe como parámetro el personaje a ser revivido, al revivir el personaje regresa con 10% de su salud máxima a menos que se reviva con una skill de revivir, en ese caso aplican las normas del skill.
+HECHO* **levelUp**: Recibe el personaje a subir de nivel y la cantidad de niveles a subir. El nivel máximo es 100.
+HECHO* **levelDown**: Recibe el personaje a bajar de nivel y la cantidad de niveles a bajar. El nivel mínimo es 1.
+HECHO* **takeDamage**: Recibe la cantidad de daño que afectará los healtpoints del personaje teniendo en cuenta que el daño recibido se reduce en 1% por cada 10 puntos de armadura del personaje, además la defensa aplicada en el cálculo debe corresponder al tipo de ataque recibido (mágico o físico). Si el daño recibido deja los healtpoints < 0, entonces el personaje debe morir.
+AHI TAMOS* **attack**: Recibe el skill a utilizar y realiza el calculo de daño a causar teniendo encuenta que los atáques de tipo fisicos se benefician de la fuerza del personaje, así que por cada 10 puntos de fuerza, el daño a realizar se aumenta en un 2%, así mismo por cada 10 puntos de agilidad del personaje la probabilidad de un impacto crítico aumenta en un 1%, si el impacto es crítico entonces el daño causado se multiplica por 150%; para los ataques de tipo mágico funciona de la misma manera pero en este caso el intelecto es quien incrementa el daño un 2% por cada 10 puntos.
 
 ### Clases
 
 Las clases permiten definir el camino del personaje en un conjunto de habilidades únicas, Epic Wars cuenta con las siguientes clases:
 
-* **Mago**: Los magos tienen habilidades únicas en el control de las fuerzas arcanas, por esto son los únicos que pueden aprender skills de tipo mágicas, aunque también pueden aprender de tipo físicas, siempre que dichas habilidades sean ataques de tipo básicos. Los Magos pueden usar armas de dos manos como: bastones; también armas de una mano como: varitas, espadas y dagas.
-* **Guerrero**: Los guerreros tienen habilidades prominentes en el uso de armas y la fuerza bruta, pero no logran manipular las fuerzas mágicas, por esta razón los guerreros no pueden aprender habilidades mágicas de ningún tipo, mientras que logran aprender habilidades de guerrero y físicas básicas y avanzadas. Los guerreros pueden usar armas de dos manos como: espadas, bastones y hachas; también armas de una mano como: dagas, espadas y hachas.
-* **Picaro**: Los picaros siempre muy astutos pueden aprender habilidades físicas y mágicas básicas, además de las habilidades propias de pícaro. Los picaros pueden no pueden usar armas de dos manos,  pero son expertos en armas de una mano como: dagas, espadas y hachas.
+HECHO* **Mago**: Los magos tienen habilidades únicas en el control de las fuerzas arcanas, por esto son los únicos que pueden aprender skills de tipo mágicas, aunque también pueden aprender de tipo físicas, siempre que dichas habilidades sean ataques de tipo básicos. Los Magos pueden usar armas de dos manos como: bastones; también armas de una mano como: varitas, espadas y dagas.
+HECHO* **Guerrero**: Los guerreros tienen habilidades prominentes en el uso de armas y la fuerza bruta, pero no logran manipular las fuerzas mágicas, por esta razón los guerreros no pueden aprender habilidades mágicas de ningún tipo, mientras que logran aprender habilidades de guerrero y físicas básicas y avanzadas. Los guerreros pueden usar armas de dos manos como: espadas, bastones y hachas; también armas de una mano como: dagas, espadas y hachas.
+HECHO* **Picaro**: Los picaros siempre muy astutos pueden aprender habilidades físicas y mágicas básicas, además de las habilidades propias de pícaro. Los picaros pueden no pueden usar armas de dos manos,  pero son expertos en armas de una mano como: dagas, espadas y hachas.
 
 
 
-### Habilidades
+HECHO### Habilidades
 
 A continuación se listan las habilidades por categorías:
 
