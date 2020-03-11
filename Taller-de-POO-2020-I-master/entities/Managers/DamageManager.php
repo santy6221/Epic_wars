@@ -50,7 +50,7 @@ class DamageManager
                 echo ($attacker->getName() . " ha atacado a " . $attacked->getName() . " con " . $skill->getName() . '<br>');
                 LevelManager::gainExp($attacker);
                 $atk = 0;
-                $critico = 10 + (($attacker->getAgi() / 10) * 0.01);
+                $critico = 10 + (($attacker->getAgi() / 10) * 0.1);
                 $v_armas = $attacker->getWeapons();
                 $v_mult = $skill->getMult();
                 $v_stats_attacker = (["str" => $attacker->getStr(), "intl" => $attacker->getIntl(), "agi" => $attacker->getAgi()]);
@@ -66,11 +66,10 @@ class DamageManager
                         $bonusTipo = ($attacker->getIntl() / 10) * 0.02;
                         $atk += $v_armas[0]->getMAtk() * $skill->getWeaponIAtk();
                         $atk += $v_armas[1]->getMAtk() * $skill->getWeaponDAtk();
-                        $atk = $atk + $v_mult["str"] * $v_stats_attacker["str"];
-                        $atk = $atk + $v_mult["intl"] * $v_stats_attacker["intl"];
-                        $atk = $atk + $v_mult["agi"] * $v_stats_attacker["agi"];
                 }
-
+                $atk = $atk + $v_mult["str"] * $v_stats_attacker["str"];
+                $atk = $atk + $v_mult["intl"] * $v_stats_attacker["intl"];
+                $atk = $atk + $v_mult["agi"] * $v_stats_attacker["agi"];
                 if (rand(0, 100) < $critico) {
                         $atk = $atk * 1.5;
                         echo ("Es una ataque critico." . '<br>');
