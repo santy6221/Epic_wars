@@ -2,7 +2,8 @@
 
 namespace entities;
 
-class Character {
+class Character
+{
     private $name = "";
     private $sex;
     private $bodyType;
@@ -18,13 +19,13 @@ class Character {
     private $race;
     private $playableClass;
     private $armorPoints;
-    private $maxSkills;
-    private $skills = [];
-    private $state;
-    private $weapons= [0 => 0, 1 => 0];
-    private $hands;
+    private $maxSkills; //tamaño maximo del array de skills
+    private $skills = []; //array donde se guardan skill aprendidas
+    private $state; //estado del pj
+    private $weapons = [0 => 0, 1 => 0]; //espacios de armas
+    private $hands; //manos libres
 
-    public function __construct( $name, $sex, $bodyType, $race, $playableClass, $str, $intl ,$agi ,$pDef ,$mDef ,$xp, $healtPoints,$maxHealtPoints, $level, $armorPoints,$maxSkills, $skills, $state, $weapons, $hands)
+    public function __construct($name, $sex, $bodyType, $race, $playableClass, $str, $intl, $agi, $pDef, $mDef, $xp, $healtPoints, $maxHealtPoints, $level, $armorPoints, $maxSkills, $skills, $state, $weapons, $hands)
     {
         $this->name = $name;
         $this->sex = $sex;
@@ -45,12 +46,12 @@ class Character {
         $this->skills = $skills;
         $this->state = $state;
         $this->weapons = $weapons;
-        $this->hands =$hands;
+        $this->hands = $hands;
     }
-    
+
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -60,7 +61,7 @@ class Character {
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -70,7 +71,7 @@ class Character {
 
     /**
      * Get the value of sex
-     */ 
+     */
     public function getSex()
     {
         return $this->sex;
@@ -80,7 +81,7 @@ class Character {
      * Set the value of sex
      *
      * @return  self
-     */ 
+     */
     public function setSex($sex)
     {
         $this->sex = $sex;
@@ -90,7 +91,7 @@ class Character {
 
     /**
      * Get the value of bodyType
-     */ 
+     */
     public function getBodyType()
     {
         return $this->bodyType;
@@ -100,7 +101,7 @@ class Character {
      * Set the value of bodyType
      *
      * @return  self
-     */ 
+     */
     public function setBodyType($bodyType)
     {
         $this->bodyType = $bodyType;
@@ -110,7 +111,7 @@ class Character {
 
     /**
      * Get the value of healtPoints
-     */ 
+     */
     public function getHealtPoints()
     {
         return $this->healtPoints;
@@ -120,7 +121,7 @@ class Character {
      * Set the value of healtPoints
      *
      * @return  self
-     */ 
+     */
     public function setHealtPoints($healtPoints)
     {
         $this->healtPoints = $healtPoints;
@@ -130,7 +131,7 @@ class Character {
 
     /**
      * Get the value of maxHealtPoints
-     */ 
+     */
     public function getMaxHealtPoints()
     {
         return $this->maxHealtPoints;
@@ -140,7 +141,7 @@ class Character {
      * Set the value of maxHealtPoints
      *
      * @return  self
-     */ 
+     */
     public function setMaxHealtPoints($maxHealtPoints)
     {
         $this->maxHealtPoints = $maxHealtPoints;
@@ -150,7 +151,7 @@ class Character {
 
     /**
      * Get the value of level
-     */ 
+     */
     public function getLevel()
     {
         return $this->level;
@@ -160,7 +161,7 @@ class Character {
      * Set the value of level
      *
      * @return  self
-     */ 
+     */
     public function setLevel($level)
     {
         $this->level = $level;
@@ -170,7 +171,7 @@ class Character {
 
     /**
      * Get the value of str
-     */ 
+     */
     public function getStr()
     {
         return $this->str;
@@ -180,7 +181,7 @@ class Character {
      * Set the value of str
      *
      * @return  self
-     */ 
+     */
     public function setStr($str)
     {
         $this->str = $str;
@@ -190,7 +191,7 @@ class Character {
 
     /**
      * Get the value of intl
-     */ 
+     */
     public function getIntl()
     {
         return $this->intl;
@@ -200,7 +201,7 @@ class Character {
      * Set the value of intl
      *
      * @return  self
-     */ 
+     */
     public function setIntl($intl)
     {
         $this->intl = $intl;
@@ -210,7 +211,7 @@ class Character {
 
     /**
      * Get the value of agi
-     */ 
+     */
     public function getAgi()
     {
         return $this->agi;
@@ -220,7 +221,7 @@ class Character {
      * Set the value of agi
      *
      * @return  self
-     */ 
+     */
     public function setAgi($agi)
     {
         $this->agi = $agi;
@@ -230,7 +231,7 @@ class Character {
 
     /**
      * Get the value of pDef
-     */ 
+     */
     public function getPDef()
     {
         return $this->pDef;
@@ -240,7 +241,7 @@ class Character {
      * Set the value of pDef
      *
      * @return  self
-     */ 
+     */
     public function setPDef($pDef)
     {
         $this->pDef = $pDef;
@@ -250,7 +251,7 @@ class Character {
 
     /**
      * Get the value of mDef
-     */ 
+     */
     public function getMDef()
     {
         return $this->mDef;
@@ -260,7 +261,7 @@ class Character {
      * Set the value of mDef
      *
      * @return  self
-     */ 
+     */
     public function setMDef($mDef)
     {
         $this->mDef = $mDef;
@@ -270,7 +271,7 @@ class Character {
 
     /**
      * Get the value of xp
-     */ 
+     */
     public function getXp()
     {
         return $this->xp;
@@ -280,7 +281,7 @@ class Character {
      * Set the value of xp
      *
      * @return  self
-     */ 
+     */
     public function setXp($xp)
     {
         $this->xp = $xp;
@@ -290,7 +291,7 @@ class Character {
 
     /**
      * Get the value of race
-     */ 
+     */
     public function getRace()
     {
         return $this->race;
@@ -300,7 +301,7 @@ class Character {
      * Set the value of race
      *
      * @return  self
-     */ 
+     */
     public function setRace($race)
     {
         $this->race = $race;
@@ -310,7 +311,7 @@ class Character {
 
     /**
      * Get the value of playableClass
-     */ 
+     */
     public function getPlayableClass()
     {
         return $this->playableClass;
@@ -320,7 +321,7 @@ class Character {
      * Set the value of playableClass
      *
      * @return  self
-     */ 
+     */
     public function setPlayableClass($playableClass)
     {
         $this->playableClass = $playableClass;
@@ -330,7 +331,7 @@ class Character {
 
     /**
      * Get the value of armorPoints
-     */ 
+     */
     public function getArmorPoints()
     {
         return $this->armorPoints;
@@ -340,7 +341,7 @@ class Character {
      * Set the value of armorPoints
      *
      * @return  self
-     */ 
+     */
     public function setArmorPoints($armorPoints)
     {
         $this->armorPoints = $armorPoints;
@@ -350,7 +351,7 @@ class Character {
 
     /**
      * Get the value of maxSkills
-     */ 
+     */
     public function getMaxSkills()
     {
         return $this->maxSkills;
@@ -360,7 +361,7 @@ class Character {
      * Set the value of maxSkills
      *
      * @return  self
-     */ 
+     */
     public function setMaxSkills($maxSkills)
     {
         $this->maxSkills = $maxSkills;
@@ -370,7 +371,7 @@ class Character {
 
     /**
      * Get the value of skills
-     */ 
+     */
     public function getSkills()
     {
         return $this->skills;
@@ -380,7 +381,7 @@ class Character {
      * Set the value of skills
      *
      * @return  self
-     */ 
+     */
     public function setSkills($skills)
     {
         $this->skills = $skills;
@@ -390,7 +391,7 @@ class Character {
 
     /**
      * Get the value of state
-     */ 
+     */
     public function getState()
     {
         return $this->state;
@@ -400,7 +401,7 @@ class Character {
      * Set the value of state
      *
      * @return  self
-     */ 
+     */
     public function setState($state)
     {
         $this->state = $state;
@@ -410,7 +411,7 @@ class Character {
 
     /**
      * Get the value of weapons
-     */ 
+     */
     public function getWeapons()
     {
         return $this->weapons;
@@ -430,7 +431,7 @@ class Character {
      * Set the value of weapons
      *
      * @return  self
-     */ 
+     */
     public function setWeapons($weapons)
     {
         $this->weapons = $weapons;
@@ -440,7 +441,7 @@ class Character {
 
     /**
      * Get the value of hands
-     */ 
+     */
     public function getHands()
     {
         return $this->hands;
@@ -450,7 +451,7 @@ class Character {
      * Set the value of hands
      *
      * @return  self
-     */ 
+     */
     public function setHands($hands)
     {
         $this->hands = $hands;
