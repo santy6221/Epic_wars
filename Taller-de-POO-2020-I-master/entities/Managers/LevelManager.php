@@ -12,8 +12,7 @@ class LevelManager
 
     private static function levelUp(Character $character)
     {
-        if ($character->getLevel() < $this->maxLevel) {
-
+        if ($character->getLevel() < self::$maxLevel) {
             $character->setLevel($character->getLevel() + 1);
         } else {
             echo $character->getName() . " ya es de nivel maximo.";
@@ -23,7 +22,6 @@ class LevelManager
     public static function levelDown(Character $character)
     {
         if ($character->getLevel() >= 2) {
-
             $character->setLevel($character->getLevel() - 1);
             echo $character->getName() . " ha perdido un nivel";
         }
