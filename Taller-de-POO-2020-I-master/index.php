@@ -15,7 +15,7 @@ require './config.php';
 $human = \entities\Managers\CharacterManager::create("Gerald", 1, 1, \entities\Races\Human::class, "Mago");
 $orc = \entities\Managers\CharacterManager::create("Garrosh", 1, 1, \entities\Races\Orc::class, "Guerrero");
 $dwarf = \entities\Managers\CharacterManager::create("Didi", 1, 1, \entities\Races\Dwarf::class, "Picaro");
-$elf = \entities\Managers\CharacterManager::create("elf0", 1, 1, \entities\Races\Elf::class, "Mago");
+$elf = \entities\Managers\CharacterManager::create("Link", 1, 1, \entities\Races\Elf::class, "Mago");
 
 //prueba de daño
 \entities\Managers\DamageManager::takeDamage($human, 40, "Fisico");
